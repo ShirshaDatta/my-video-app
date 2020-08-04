@@ -32,6 +32,7 @@ class VideoPlayerScreen extends StatefulWidget {
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   VideoPlayerController _controller;
+  int _playbackTime = 0;
   Future<void> _initializeVideoPlayerFuture;
 
   @override
@@ -43,6 +44,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     _controller = VideoPlayerController.network(
       'https://shirshadatta.github.io/My-portfolio/assets/cool_Trim.mp4',
     );
+    
 
     // Initialize the controller and store the Future for later use.
     _initializeVideoPlayerFuture = _controller.initialize();
@@ -87,8 +89,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         margin: EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           //alignment: Alignment.topCenter,
           children: <Widget>[
+            
             Container(
               child: FutureBuilder(
                 future: _initializeVideoPlayerFuture,
@@ -109,6 +113,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 },
               ),
             ),
+            /*Slider( 
+              value: _playbackTime.toDouble(),
+              max: _controller.value.duration.inSeconds.toDouble(),
+              min: 0,
+              onChanged: null,
+            ),*/
           ],
         ),
       ),
